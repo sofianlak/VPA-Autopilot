@@ -76,14 +76,14 @@ func main() {
 	flag.BoolVar(&enableHTTP2, "enable-http2", false,
 		"If set, HTTP/2 will be enabled for the metrics and webhook servers")
 
-	flag.StringVar(&config.AutoVpaGoVpaNamePrefix, "vpa-name-prefix", "vpa-autopilot-",
+	flag.StringVar(&config.VpaNamePrefix, "vpa-name-prefix", "vpa-autopilot-",
 		"The prefix used to generate the name of the automatic VPA") // Warning: changing this value on an existing cluster will lead to duplicate VPAs that will need to be cleaned manually
 
-	flag.StringVar(&config.AutoVpaGoVpaLabelKey, "vpa-label-key", "vpa-autopilot-managed",
+	flag.StringVar(&config.VpaLabelKey, "vpa-label-key", "vpa-autopilot-managed",
 		"The key used in the generated VPA labels to mark a VPA managed by the controller")
-	flag.StringVar(&config.AutoVpaGoVpaLabelValue, "vpa-label-value", "true",
+	flag.StringVar(&config.VpaLabelValue, "vpa-label-value", "true",
 		"The value used in the generated VPA labels (on the vpa-label-key key) to mark a VPA managed by the controller")
-	flag.StringVar(&config.AutopaGoVpaBehaviourString, "vpa-behaviour", "Off",
+	flag.StringVar(&config.VpaBehaviourString, "vpa-behaviour", "Off",
 		"The behavior of the VPAs managed by the controller. It should be one of the value avalable in vpa.spec.updatePolicy.updateMode")
 
 	flag.Var(&config.ExcludedNamespaces, "excluded-namespaces",
@@ -102,11 +102,11 @@ func main() {
 	opts.BindFlags(flag.CommandLine)
 	flag.Parse()
 
-	switch config.AutopaGoVpaBehaviourString {
+	switch config.VpaBehaviourString {
 	case "Off", "Auto", "Initial", "Recreate":
-		config.AutopaGoVpaBehaviour = vpav1.UpdateMode(config.AutopaGoVpaBehaviourString)
+		config.VpaBehaviourTyped = vpav1.UpdateMode(config.VpaBehaviourString)
 	default:
-		err := fmt.Errorf("Unknown behaviour string: %s", config.AutopaGoVpaBehaviourString)
+		err := fmt.Errorf("Unknown behaviour string: %s", config.VpaBehaviourString)
 		setupLog.Error(err, "unable parse flags")
 		os.Exit(1)
 	}

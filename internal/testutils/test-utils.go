@@ -94,7 +94,7 @@ func GenerateTestClientVPA(ctx context.Context, namespace string, targetDeployme
 				Name:       targetDeploymentName,
 			},
 			UpdatePolicy: &vpav1.PodUpdatePolicy{
-				UpdateMode: &config.AutopaGoVpaBehaviour,
+				UpdateMode: &config.VpaBehaviourTyped,
 			},
 			ResourcePolicy: &vpav1.PodResourcePolicy{
 				ContainerPolicies: []vpav1.ContainerResourcePolicy{

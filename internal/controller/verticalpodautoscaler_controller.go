@@ -228,11 +228,11 @@ var clientVPAPredicate predicate.Funcs = predicate.Funcs{
 		matchLabelOld := false
 		matchLabelNew := false
 
-		if value, present := vpaOld.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-			matchLabelOld = (value == config.AutoVpaGoVpaLabelValue)
+		if value, present := vpaOld.GetLabels()[config.VpaLabelKey]; present {
+			matchLabelOld = (value == config.VpaLabelValue)
 		}
-		if value, present := vpaNew.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-			matchLabelNew = (value == config.AutoVpaGoVpaLabelValue)
+		if value, present := vpaNew.GetLabels()[config.VpaLabelKey]; present {
+			matchLabelNew = (value == config.VpaLabelValue)
 		}
 
 		return isSpecChanged && (!matchLabelOld && !matchLabelNew)
@@ -242,8 +242,8 @@ var clientVPAPredicate predicate.Funcs = predicate.Funcs{
 	CreateFunc: func(e event.CreateEvent) bool {
 		vpaLabels := e.Object.GetLabels()
 		clientVPA := true
-		if value, present := vpaLabels[config.AutoVpaGoVpaLabelKey]; present {
-			if value == config.AutoVpaGoVpaLabelValue {
+		if value, present := vpaLabels[config.VpaLabelKey]; present {
+			if value == config.VpaLabelValue {
 				clientVPA = false
 			}
 		}
@@ -254,8 +254,8 @@ var clientVPAPredicate predicate.Funcs = predicate.Funcs{
 	DeleteFunc: func(e event.DeleteEvent) bool {
 		vpaLabels := e.Object.GetLabels()
 		clientVPA := true
-		if value, present := vpaLabels[config.AutoVpaGoVpaLabelKey]; present {
-			if value == config.AutoVpaGoVpaLabelValue {
+		if value, present := vpaLabels[config.VpaLabelKey]; present {
+			if value == config.VpaLabelValue {
 				clientVPA = false
 			}
 		}

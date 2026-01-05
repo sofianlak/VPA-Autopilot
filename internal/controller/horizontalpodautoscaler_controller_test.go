@@ -60,8 +60,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment.Name, Namespace: deployment.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -88,8 +88,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment.Name, Namespace: deployment.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -105,8 +105,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment.Name, Namespace: deployment.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -142,8 +142,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment.Name, Namespace: deployment.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -187,8 +187,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment1.Name, Namespace: deployment1.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -204,8 +204,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment1.Name, Namespace: deployment1.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -218,8 +218,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment2.Name, Namespace: deployment2.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -241,8 +241,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: "i-do-not-exist", Namespace: "default"})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -259,8 +259,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: "i-do-not-exist", Namespace: "default"})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -273,8 +273,8 @@ var _ = Describe("HorizontalPodAutoscaler Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: "i-do-not-exist-2", Namespace: "default"})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}

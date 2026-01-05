@@ -55,7 +55,7 @@ var _ = Describe("Auto VPA Controller", func() {
 			}, timeout).Should(BeTrue())
 			vpa := vpaList[0]
 
-			Expect(vpa.Labels).Should(HaveKeyWithValue(config.AutoVpaGoVpaLabelKey, config.AutoVpaGoVpaLabelValue))
+			Expect(vpa.Labels).Should(HaveKeyWithValue(config.VpaLabelKey, config.VpaLabelValue))
 
 			Expect(vpa.Spec.TargetRef.APIVersion).Should(BeIdenticalTo("apps/v1"))
 			Expect(vpa.Spec.TargetRef.Kind).Should(BeIdenticalTo("Deployment"))
@@ -65,7 +65,7 @@ var _ = Describe("Auto VPA Controller", func() {
 			Expect(*vpa.Spec.ResourcePolicy.ContainerPolicies[0].ControlledResources).Should(HaveLen(1))
 			Expect((*vpa.Spec.ResourcePolicy.ContainerPolicies[0].ControlledResources)[0]).Should(BeIdenticalTo(corev1.ResourceCPU))
 
-			Expect(*vpa.Spec.UpdatePolicy.UpdateMode).Should(BeEquivalentTo(config.AutopaGoVpaBehaviour))
+			Expect(*vpa.Spec.UpdatePolicy.UpdateMode).Should(BeEquivalentTo(config.VpaBehaviourTyped))
 
 			Expect(*&vpa.Annotations).Should(HaveKeyWithValue("vpa-autopilot.michelin.com/original-requests-sum", "1050"))
 		})
@@ -266,8 +266,8 @@ var _ = Describe("Auto VPA Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment.Name, Namespace: deployment.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}
@@ -297,8 +297,8 @@ var _ = Describe("Auto VPA Controller", func() {
 				vpaList := utils.FindMatchingVPA(ctx, k8sClient, types.NamespacedName{Name: deployment.Name, Namespace: deployment.Namespace})
 				automaticVPANumber := 0
 				for _, vpa := range vpaList {
-					if value, present := vpa.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-						if value == config.AutoVpaGoVpaLabelValue {
+					if value, present := vpa.GetLabels()[config.VpaLabelKey]; present {
+						if value == config.VpaLabelValue {
 							automaticVPANumber += 1
 						}
 					}

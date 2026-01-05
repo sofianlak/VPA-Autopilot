@@ -109,9 +109,9 @@ var _ = BeforeSuite(func() {
 			fmt.Sprintf("1.31.0-%s-%s", runtime.GOOS, runtime.GOARCH)),
 	}
 
-	config.AutoVpaGoVpaLabelValue = "vpa-autopilot-managed"
-	config.AutoVpaGoVpaLabelKey = "true"
-	config.AutopaGoVpaBehaviour = "Off"
+	config.VpaLabelValue = "vpa-autopilot-managed"
+	config.VpaLabelKey = "true"
+	config.VpaBehaviourTyped = "Off"
 	config.ExcludedNamespaceLabelKey = "excluded-namespaces-key"
 	config.ExcludedNamespaceLabelValue = "true"
 	config.ExcludedNamespaces.Set("test-vpa-ignore-namespace-list")

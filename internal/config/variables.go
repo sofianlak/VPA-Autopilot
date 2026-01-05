@@ -35,17 +35,17 @@ const (
 )
 
 var (
-	// AutoVpaGoVpaNamePrefix is the prefix used to generate the name of the automatic VPA
-	AutoVpaGoVpaNamePrefix string = "vpa-autopilot-"
+	// VpaNamePrefix is the prefix used to generate the name of the automatic VPA
+	VpaNamePrefix string = "vpa-autopilot-"
 
-	// AutoVpaGoVpaLabelKey is the label key used to mark a VPA managed by the controller
-	AutoVpaGoVpaLabelKey string
-	// AutoVpaGoVpaLabelValue is the label value used to mark a VPA managed by the controller
-	AutoVpaGoVpaLabelValue string
+	// VpaLabelKey is the label key used to mark a VPA managed by the controller
+	VpaLabelKey string
+	// VpaLabelValue is the label value used to mark a VPA managed by the controller
+	VpaLabelValue string
 
-	// AutopaGoVpaBehaviour is the behavior of the VPAs managed by the controller.
+	// VpaBehaviourString is the behavior of the VPAs managed by the controller.
 	// It should be one of the value available in vpa.spec.updatePolicy.updateMode
-	AutopaGoVpaBehaviourString string
+	VpaBehaviourString string
 
 	// ExcludedNamespaces contains the list of namespaces (comma-separated)
 	// that should be ignored by the cluster controller
@@ -56,8 +56,8 @@ var (
 	ExcludedNamespaceLabelKey   string
 	ExcludedNamespaceLabelValue string
 
-	// AutopaGoVpaBehaviour corresponds to the behaviour of the generated VPAs (check the VPA documentation for modes meaning)
-	AutopaGoVpaBehaviour vpav1.UpdateMode
+	// VpaBehaviourTyped corresponds to the behaviour of the generated VPAs (check the VPA documentation for modes meaning)
+	VpaBehaviourTyped vpav1.UpdateMode
 
 	// TargetLimits is a flag to select wehter the generated VPA change the limits of the deployments or not
 	TargetLimits bool

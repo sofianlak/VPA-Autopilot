@@ -41,11 +41,11 @@ func GenerateAutomaticVPA(deployment *appsv1.Deployment) (*vpav1.VerticalPodAuto
 	deploymentHash := fnv.New32a()
 	deploymentHash.Write([]byte(deployment.Name))
 	suffix := fmt.Sprint(deploymentHash.Sum32())
-	completeName := config.AutoVpaGoVpaNamePrefix
+	completeName := config.VpaNamePrefix
 
-	if len(deployment.Name) > 253-len(config.AutoVpaGoVpaNamePrefix)-len(suffix) {
+	if len(deployment.Name) > 253-len(config.VpaNamePrefix)-len(suffix) {
 		// If the deployment name is too long to be concatenated directly, truncate it and add sha to avoid name collision
-		completeName += deployment.Name[:253-len(config.AutoVpaGoVpaNamePrefix)-len(suffix)] + suffix
+		completeName += deployment.Name[:253-len(config.VpaNamePrefix)-len(suffix)] + suffix
 	} else {
 		// If the deployment name is reasonable, concatenate it directly
 		completeName += deployment.Name
@@ -71,7 +71,7 @@ func GenerateAutomaticVPA(deployment *appsv1.Deployment) (*vpav1.VerticalPodAuto
 				"vpa-autopilot.michelin.com/original-requests-sum": strconv.FormatInt(requestCpuSum, 10),
 			},
 			Labels: map[string]string{
-				config.AutoVpaGoVpaLabelKey: config.AutoVpaGoVpaLabelValue,
+				config.VpaLabelKey: config.VpaLabelValue,
 			},
 			// Set owner reference to the targeted deployment to facilitate deletion
 			OwnerReferences: []metav1.OwnerReference{
@@ -91,7 +91,7 @@ func GenerateAutomaticVPA(deployment *appsv1.Deployment) (*vpav1.VerticalPodAuto
 				Name:       deployment.Name,
 			},
 			UpdatePolicy: &vpav1.PodUpdatePolicy{
-				UpdateMode: &config.AutopaGoVpaBehaviour,
+				UpdateMode: &config.VpaBehaviourTyped,
 			},
 			// Target only CPU for all containers of the pods
 			ResourcePolicy: &vpav1.PodResourcePolicy{

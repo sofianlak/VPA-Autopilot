@@ -193,11 +193,11 @@ var vpaPredicate predicate.Funcs = predicate.Funcs{
 		matchLabelOld := false
 		matchLabelNew := false
 
-		if value, present := vpaOld.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-			matchLabelOld = (value == config.AutoVpaGoVpaLabelValue)
+		if value, present := vpaOld.GetLabels()[config.VpaLabelKey]; present {
+			matchLabelOld = (value == config.VpaLabelValue)
 		}
-		if value, present := vpaNew.GetLabels()[config.AutoVpaGoVpaLabelKey]; present {
-			matchLabelNew = (value == config.AutoVpaGoVpaLabelValue)
+		if value, present := vpaNew.GetLabels()[config.VpaLabelKey]; present {
+			matchLabelNew = (value == config.VpaLabelValue)
 		}
 
 		return (isSpecChanged && (matchLabelOld || matchLabelNew)) || (matchLabelOld != matchLabelNew)
